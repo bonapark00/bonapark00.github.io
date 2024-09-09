@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I participated in [NHH workshop](https://sites.google.com/g.postech.edu/nhh-workshop/home) with NCLab at KAIST, HCSLab at SNU, HISLab at POSTECH.
+I participated in [NHH workshop](https://sites.google.com/g.postech.edu/nhh-workshop/home) with NCLab at KAIST, HCSLab at SNU, HISLab at POSTECH. I presented my work with 
