@@ -18,12 +18,12 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi! I’m Jaeyeon Park, but you can also call me Bona.  
+Hi! I’m Jaeyeon Park.  
 I'm a first-year MS/PhD student in the [Human-Centered Computing Systems Lab](https://hcs.snu.ac.kr/) at Seoul National University, under the guidance of Professor [Youngki Lee](https://youngkilee.blogspot.com/p/about-me.html).  
 I graduated with high honors in Computer Science from Yonsei University in 2024 and have been working as a research intern at the Human-Centered Computing Systems Lab since the summer of 2022.
 
 My research interests include Neural 3D Synthesis (3D Gaussian Splatting, NeRF) and optimizing graphics systems for mobile devices.  
-I am currently working on developing hyper-realistic 3D streaming and rendering systems for mobile devices with [Kyungjin](https://kyungjin-lee.github.io/), Hyunwoo, and Prof. Youngki.
+I am currently working on developing hyper-realistic 3D streaming and rendering systems for mobile devices with [Kyungjin](https://kyungjin-lee.github.io/), Hyunwoo, and Pro$$f. Youngki.
 
 
 
