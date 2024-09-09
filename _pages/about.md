@@ -19,7 +19,7 @@ social: true # includes social icons at the bottom of the page
 ---
 
 Hi! I’m Jaeyeon Park.  
-I'm a first-year MS/PhD student in the [Human-Centered Computing Systems Lab](https://hcs.snu.ac.kr/) at Seoul National University, under the guidance of Professor [Youngki Lee](https://youngkilee.blogspot.com/p/about-me.html).  
+I'm a first-year MS/PhD student in the [Human-Centered Computing Systems Lab]() at Seoul National University, under the guidance of Professor [Youngki Lee](https://youngkilee.blogspot.com/p/about-me.html).  
 I graduated with high honors in Computer Science from Yonsei University in 2024 and have been working as a research intern at the Human-Centered Computing Systems Lab since the summer of 2022.
 
 My research interests include Neural 3D Synthesis (3D Gaussian Splatting, NeRF) and optimizing graphics systems for mobile devices.  
