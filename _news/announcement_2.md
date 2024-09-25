@@ -6,7 +6,7 @@ inline: true
 related_posts: false
 ---
 
-I participated in [MobiSys 24'](https://www.sigmobile.org/mobisys/2024/) at Tokyo, Japan. I presented my ongoing work "Toward On-Device 3D Gaussian Splatting" at N2 Women workshop. 
+I participated in [MobiSys 24](https://www.sigmobile.org/mobisys/2024/) at Tokyo, Japan. I presented my ongoing work "Toward On-Device 3D Gaussian Splatting" at N2 Women workshop. 
 
 <!-- ---
 
