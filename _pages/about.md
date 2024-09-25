@@ -9,9 +9,6 @@ profile:
   image: prof_pic.jpeg
   image_circular: false # crops the image to make it circular
   more_info: >
-    # <p>555 your office number</p>
-    # <p>123 your address street</p>
-    # <p>Your City, State 12345</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
@@ -23,7 +20,7 @@ I'm a first-year MS student in the [Human-Centered Computing Systems Lab]() at S
 I graduated with high honors in Computer Science from Yonsei University in 2024 and have been working as a research intern at the Human-Centered Computing Systems Lab since the summer of 2022.
 
 My research interests include Neural 3D Synthesis (3D Gaussian Splatting, NeRF) and optimizing graphics systems for mobile devices.  
-I am currently working on developing hyper-realistic 3D streaming and rendering systems for mobile devices with [Kyungjin](https://kyungjin-lee.github.io/), Hyunwoo, and Pro$$f. Youngki.
+I am currently working on developing hyper-realistic 3D streaming and rendering systems for mobile devices with [Kyungjin](https://kyungjin-lee.github.io/), Hyunwoo, and Prof. Youngki.
 
 
 
