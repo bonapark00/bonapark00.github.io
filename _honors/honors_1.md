@@ -7,8 +7,6 @@ inline: true
 related_posts: false
 ---
 
-**Summa Cum Laude**  
-*by Yonsei University*  
 
 - **Top 3 of the class 2024** in the **AI department of Yonsei**.
 

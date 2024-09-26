@@ -7,8 +7,5 @@ inline: true
 related_posts: false
 ---
 
-**Highest Honors**  
-*by Yonsei University*  
-
 - Top 1% GPA  
-- **Spring 2020**
+- ****
