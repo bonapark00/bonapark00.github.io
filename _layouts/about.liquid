@@ -53,24 +53,11 @@ layout: default
       <h2>
         <a href="{{ '/honors/' | relative_url }}" style="color: inherit">honors</a>
       </h2>
-      <div class="table-responsive">
-        <table class="table table-sm table-borderless">
-          {% assign honors = site.honors | reverse %}
-          {% for honor in honors %}
-            <tr>
-              <th scope="row" style="width: 20%">{{ honor.date | date: '%b %d, %Y' }}</th>
-              <td>
-                <div class="honor-entry">
-                  <strong>{{ honor.title }}</strong> <span>{{ honor.institution }}</span>
-                  <p>{{ honor.description }}</p>
-                </div>
-              </td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
+      <!-- Include the honors.liquid template here -->
+      {% include honors.liquid %}
+    {% else %}
+      <p>No honors listed yet.</p>
     {% endif %}
-
 
 {% comment %}
     <!-- Latest posts -->

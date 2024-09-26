@@ -1,8 +1,7 @@
 <div class="honors">
   {% if site.honors != blank %}
     {% assign honors_size = site.honors | size %}
-    <div
-      class="table-responsive"
+    <div class="table-responsive"
       {% if include.limit and site.announcements.scrollable and honors_size > 3 %}
         style="max-height: 60vw"
       {% endif %}
@@ -16,22 +15,17 @@
         {% endif %}
         {% for item in honors limit: honors_limit %}
           <tr>
-            <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
+            <th scope="row" style="width: 20%">{{ item.date | date: '%b %Y' }}</th>
             <td>
-              {% if item.inline %}
-                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-              {% else %}
-                <div class="honors-title">
-                  <strong>{{ item.title }}</strong> <span>{{ item.institution }}</span>
-                  <p>{{ item.description }}</p>
-                </div>
-              {% endif %}
+              <strong>{{ item.title }}</strong>  
+              <p><em>{{ item.institution }}</em></p>
+              <p>{{ item.content | remove: '<p>' | remove: '</p>' }}</p>
             </td>
           </tr>
         {% endfor %}
       </table>
     </div>
   {% else %}
-    <p>No honors listed...</p>
+    <p>No honors listed so far...</p>
   {% endif %}
 </div>
