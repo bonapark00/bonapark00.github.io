@@ -198,6 +198,11 @@ collections:
   projects:
     output: true
     permalink: /:collection/:title/
+  honors:
+    output: true
+    defaults:
+      layout: post
+    permalink: /:collection/:title/
 
 announcements:
   enabled: true
