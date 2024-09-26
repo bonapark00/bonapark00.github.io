@@ -47,7 +47,8 @@ layout: default
       </h2>
       {% include news.liquid limit=true %}
     {% endif %}
-
+    
+{% comment %}
     <!-- Latest posts -->
     {% if site.latest_posts.enabled %}
       <h2>
@@ -76,5 +77,8 @@ layout: default
     {% if site.newsletter.enabled and site.footer_fixed %}
       {% include scripts/newsletter.liquid center=true %}
     {% endif %}
+
+{% endcomment %}
+
   </article>
 </div>
