@@ -1,7 +1,7 @@
 ---
 
 layout: page  
-title: **Guideline Formulation for Continuous Vision AI Applications**  
+title: Guideline Formulation for Continuous Vision AI Applications
 img: assets/img/projects/guideline/guideline_overview.png  
 importance: 1  
 category: work  
