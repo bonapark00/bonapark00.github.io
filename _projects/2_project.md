@@ -2,7 +2,7 @@
 layout: page
 title: Golden Time - 
 # description: with background image
-img: assets/img/projects/golden_time/
+img: assets/img/projects/golden_time/golden_time_logo.png
 importance: 1
 category: work
 related_publications: true
