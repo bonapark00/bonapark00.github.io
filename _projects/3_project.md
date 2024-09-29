@@ -29,6 +29,8 @@ Our research includes a two-stage evaluation process:
 
 In this project, I contributed by developing a Computer Vision AI prototype designed to validate the proposed guidelines. The core feature of the application is its ability to recognize text that the user's index finger is pointing at and store the detected words on the user's device. This prototype addresses **all six identified pain points** and satisfies **four out of the eighteen proposed guidelines**. The major technologies used include Android Studio, MLKit, and MediaPipe.
 
+
+
 ---
 
 ## Presentation Slides

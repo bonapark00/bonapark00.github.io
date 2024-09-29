@@ -94,7 +94,7 @@ The cycle consists of 3 parts: Model training, Model deploying, and Model retrai
   - (a) Model files or a registered model in the workspace
     - Here we used the model registered in Model Registry above. We need to choose a model version by considering the accuracy of the models.
     
-    <p align="center"><img src = "/assets/img/projects/Untitled 6.png" width="40%" height="40%"></p>
+    <p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 6.png" width="40%" height="40%"></p>
   - (b) Scoring script
     - The scoring script is a Python file (`.py`) that contains the logic about how to run the model and read the input data submitted by the batch deployment executor driver.
     
