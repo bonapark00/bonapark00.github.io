@@ -43,7 +43,7 @@ InfantinO is an online learning framework targeting infants' facial expression c
 
 ## MLops
 
-<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled.png" width="60%" height="60%"></p>
+<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled.png" width="60%" height="60%"></p>
 
 We developed the MLops pipeline for this project mainly using ‘mlflow’, ‘Azure Machine Learning’, and aws services.
 
@@ -51,7 +51,7 @@ In this picture, MLops cycle goes counter-clockwise starting from the bottom-rig
 
 The cycle consists of 3 parts: Model training, Model deploying, and Model retraining. 
 
-## Ⅰ. Model Training
+### Ⅰ. Model Training
 
 1. Train model
 
@@ -69,35 +69,35 @@ The cycle consists of 3 parts: Model training, Model deploying, and Model retrai
     - Get the ‘.pkl’ file of the model from the S3 bucket
     - Register the ‘.pkl’ file to AzureML Model Registry by naming the model with the model version
         
-<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 1.png" width="40%" height="40%"></p>
+<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 1.png" width="40%" height="40%"></p>
 
         
-<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 2.png" width="40%" height="40%"></p>
+<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 2.png" width="40%" height="40%"></p>
 
         
-## Ⅱ. Model Deploying
+### Ⅱ. Model Deploying
 
-### 1. Create an environment 
+#### 1. Create an environment 
 - In AzureML, you can define an environment from a Docker image, a Docker build context, and a conda specification with a Docker image. Azure ML Environments are used to define the containers where your code will run.
-- We made an environment starting from the existing environment. The environment is uploaded to ACR.<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 3.png" width="40%" height="40%"></p> 
+- We made an environment starting from the existing environment. The environment is uploaded to ACR.<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 3.png" width="40%" height="40%"></p> 
 - Customize the environment by editing the DockerFile. We added some required packages.
                 
-<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 5.png" width="40%" height="40%"></p>
+<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 5.png" width="40%" height="40%"></p>
 
         
         
-### 2. Create an endpoint
+#### 2. Create an endpoint
 - Use Azure Machine Learning endpoints to streamline model deployments for both real-time and batch inference deployments. Endpoints provide a unified interface to invoke and manage model deployments across compute types. An endpoint, in this context, is an HTTPS path that provides an interface for clients to send requests (input data) and receive the inferencing (scoring) output of a trained model.
 - To create an online endpoint in AzureML, we need to specify four elements
   - (a) Model files or a registered model in the workspace
-    - Here we used the model registered in Model Registry above. We need to choose a model version by considering the accuracy of the models.<p align="center"><img src = "assets/img/projects/Untitled 6.png" width="40%" height="40%"></p>
+    - Here we used the model registered in Model Registry above. We need to choose a model version by considering the accuracy of the models.<p align="center"><img src = "/assets/img/projects/Untitled 6.png" width="40%" height="40%"></p>
   - (b) Scoring script
-    - The scoring script is a Python file (`.py`) that contains the logic about how to run the model and read the input data submitted by the batch deployment executor driver.<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 7.png" width="40%" height="40%"></p>
-  - (c) Environment<p align="center"><img src = "./images/Untitled 8.png" width="40%" height="40%"></p>
-  - (d) Computing instance, scale setting<p align="center"><img src = "assets/img/projects/ybigta_onn/Untitled 9.png" width="40%" height="40%"></p>        
+    - The scoring script is a Python file (`.py`) that contains the logic about how to run the model and read the input data submitted by the batch deployment executor driver.<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 7.png" width="40%" height="40%"></p>
+  - (c) Environment<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 8.png" width="40%" height="40%"></p>
+  - (d) Computing instance, scale setting<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 9.png" width="40%" height="40%"></p>        
     
 
-### Users can make 2 actions on our website.
+#### Users can make 2 actions on our website.
 
 A. Make an inference request of one baby picture.
 
@@ -109,7 +109,7 @@ Action A.
 2. Node.js server sends the s3 bucket URI of the image to the AzureML endpoint.
 3. AzureML endpoint returns the inference result.
 
-## Ⅲ. Model Retraining
+### Ⅲ. Model Retraining
 
 Action B.
 
