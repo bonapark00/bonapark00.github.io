@@ -22,7 +22,9 @@ InfantinO is an online learning framework targeting infants' facial expression c
 
 
 
-
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe src="https://drive.google.com/file/d/1jGR_O3MjBp1_BM5LIkHuCcIx1niGuEpg/preview" width="640" height="480" allow="autoplay" class="embed-responsive-item"></iframe>
+</div>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
