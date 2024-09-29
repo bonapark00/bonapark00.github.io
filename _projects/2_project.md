@@ -8,7 +8,7 @@ category: work
 related_publications: false
 ---
 
-<h1 align="center">Golden Time</h1>
+<!-- <h1 align="center">Golden Time</h1> -->
 <h3 align="center">For 2023 Google Developers Solution Challenge</h3>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/11978494/228843932-c59e03fb-d4e7-458d-a548-58e80583a7ea.png" alt="icon" width="250" height="250">
