@@ -5,7 +5,7 @@ title: MLOps Project for Online Learning
 img: assets/img/projects/ybigta_onn/mlops_pipeline.png
 importance: 1
 category: work
-related_publications: true
+related_publications: false
 ---
 
 
@@ -79,7 +79,9 @@ The cycle consists of 3 parts: Model training, Model deploying, and Model retrai
 
 #### 1. Create an environment 
 - In AzureML, you can define an environment from a Docker image, a Docker build context, and a conda specification with a Docker image. Azure ML Environments are used to define the containers where your code will run.
-- We made an environment starting from the existing environment. The environment is uploaded to ACR.<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 3.png" width="40%" height="40%"></p> 
+- We made an environment starting from the existing environment. The environment is uploaded to ACR.
+
+<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 3.png" width="40%" height="40%"></p> 
 - Customize the environment by editing the DockerFile. We added some required packages.
                 
 <p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 5.png" width="40%" height="40%"></p>
@@ -90,11 +92,19 @@ The cycle consists of 3 parts: Model training, Model deploying, and Model retrai
 - Use Azure Machine Learning endpoints to streamline model deployments for both real-time and batch inference deployments. Endpoints provide a unified interface to invoke and manage model deployments across compute types. An endpoint, in this context, is an HTTPS path that provides an interface for clients to send requests (input data) and receive the inferencing (scoring) output of a trained model.
 - To create an online endpoint in AzureML, we need to specify four elements
   - (a) Model files or a registered model in the workspace
-    - Here we used the model registered in Model Registry above. We need to choose a model version by considering the accuracy of the models.<p align="center"><img src = "/assets/img/projects/Untitled 6.png" width="40%" height="40%"></p>
+    - Here we used the model registered in Model Registry above. We need to choose a model version by considering the accuracy of the models.
+    
+    <p align="center"><img src = "/assets/img/projects/Untitled 6.png" width="40%" height="40%"></p>
   - (b) Scoring script
-    - The scoring script is a Python file (`.py`) that contains the logic about how to run the model and read the input data submitted by the batch deployment executor driver.<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 7.png" width="40%" height="40%"></p>
-  - (c) Environment<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 8.png" width="40%" height="40%"></p>
-  - (d) Computing instance, scale setting<p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 9.png" width="40%" height="40%"></p>        
+    - The scoring script is a Python file (`.py`) that contains the logic about how to run the model and read the input data submitted by the batch deployment executor driver.
+    
+    <p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 7.png" width="40%" height="40%"></p>
+  - (c) Environment
+  
+  <p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 8.png" width="40%" height="40%"></p>
+  - (d) Computing instance, scale setting
+  
+  <p align="center"><img src = "/assets/img/projects/ybigta_onn/Untitled 9.png" width="40%" height="40%"></p>        
     
 
 #### Users can make 2 actions on our website.
@@ -117,6 +127,7 @@ Action B.
 2. In the local environment, keep track of the number of data in the s3 bucket. And if the number of data increases, retrains the model with the most recently stored data.
  
 
+## Presentation Slides
 <div class="row">
     <div class="col-sm-12 mt-3 mt-md-0">
         <div class="embed-responsive embed-responsive-16by9">
