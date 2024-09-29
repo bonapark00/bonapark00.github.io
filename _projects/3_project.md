@@ -18,15 +18,14 @@ Our research includes a two-stage evaluation process:
 2. **Prototype-Based User Study:** This study examines the user experience quality of various designs, demonstrating that higher compliance with the guidelines leads to a significantly improved user experience.
 
 
-<div class="row">  
-    <div class="col-sm mt-3 mt-md-0">  
-        {% include figure.liquid loading="eager" path="/assets/img/projects/guideline/app_screenshot.png" title="example image" class="img-fluid rounded z-depth-1" %}  
-    </div>  
-</div>  
+
+
+<p align="center">
+  <img src="/assets/img/projects/guideline/app_screenshot.png" alt="icon" width="250">
+</p>
 <div class="caption">  
     Real-time word recognition when pointing at text.  
 </div>  
-
 
 In this project, I contributed by developing a Computer Vision AI prototype designed to validate the proposed guidelines. The core feature of the application is its ability to recognize text that the user's index finger is pointing at and store the detected words on the user's device. This prototype addresses **all six identified pain points** and satisfies **four out of the eighteen proposed guidelines**. The major technologies used include Android Studio, MLKit, and MediaPipe.
 
