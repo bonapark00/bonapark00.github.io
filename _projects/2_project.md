@@ -60,3 +60,9 @@ The Wear OS for Golden Time lets you:
 - Kotlin
 - MVVM architecture
 - Health Services
+
+
+## Project Code
+You can find the code for this project on GitHub:
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repo-blue?logo=github&logoColor=white)](https://github.com/gdg-yonsei/golden-time-wearos/tree/main)
