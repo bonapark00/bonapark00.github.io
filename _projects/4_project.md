@@ -43,5 +43,5 @@ We present **LB-Edit**, a framework that addresses two coupled problems:
 
 ## Links
 
-- [Project Page](http://localhost:8787/)
+- [Project Page](https://bonapark00.github.io/lbedit-project-page/)
 - [arXiv](https://arxiv.org/abs/2607.19777)
