@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="title" content="LB-Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing">
+  <meta name="description" content="LB-Edit addresses two coupled problems in text-driven 3DGS editing: where to place editing cameras for localized edits, and how to make per-view edits agree with one another for 3D consistency.">
+  <meta name="keywords" content="3D Gaussian Splatting, text-guided editing, view selection, attention alignment, consistent 3D editing, diffusion models, camera placement">
+  <meta name="author" content="Jaeyeon Park, Taeho Kang, Youngki Lee">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Seoul National University HCS Lab">
+  <meta property="og:title" content="LB-Edit: Look Before You Edit">
+  <meta property="og:description" content="Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing">
+  <meta property="og:url" content="https://jypark.github.io/projects/LB-Edit/">
+  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="2026-07-22T00:00:00.000Z">
+  <meta property="article:author" content="Jaeyeon Park">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="3D Gaussian Splatting">
+  <meta property="article:tag" content="Text-Guided Editing">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LB-Edit: Look Before You Edit">
+  <meta name="twitter:description" content="Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing">
+  <meta name="twitter:image" content="static/images/teaser.png">
+
+  <meta name="citation_title" content="Look Before You Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing">
+  <meta name="citation_author" content="Park, Jaeyeon">
+  <meta name="citation_author" content="Kang, Taeho">
+  <meta name="citation_author" content="Lee, Youngki">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="arXiv preprint">
+  <meta name="citation_arxiv_id" content="2607.19777">
+
+  <title>LB-Edit: Look Before You Edit | 3DGS Editing</title>
+
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    function renderPDF(canvasId, pdfPath) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+
+      const loadingTask = pdfjsLib.getDocument(pdfPath);
+      loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+          const container = canvas.parentElement;
+          const containerWidth = container.getBoundingClientRect().width || container.clientWidth || 800;
+          const unscaled = page.getViewport({ scale: 1 });
+          const scale = (containerWidth / unscaled.width) * window.devicePixelRatio;
+          const viewport = page.getViewport({ scale });
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.style.width = '100%';
+          canvas.style.height = 'auto';
+          canvas.style.display = 'block';
+          canvas.style.borderRadius = '8px';
+          canvas.style.boxShadow = '0 4px 20px rgba(0,0,0,0.12)';
+
+          page.render({ canvasContext: canvas.getContext('2d'), viewport });
+        });
+      }).catch(function(err) {
+        console.error('PDF load error (' + pdfPath + '):', err);
+      });
+    }
+
+    function renderAll() {
+      renderPDF('canvas-method',      'static/images/method_overview.pdf');
+      renderPDF('canvas-qualitative', 'static/images/qualitative_comparison.pdf');
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderAll);
+    } else {
+      renderAll();
+    }
+  </script>
+
+  <style>
+    .method-figure {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+.contribution-card {
+      background: #f8f9ff;
+      border-left: 4px solid #3273dc;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .contribution-card strong {
+      color: #2463cc;
+    }
+    .result-table {
+      font-size: 0.9rem;
+    }
+    .result-table .is-bold {
+      font-weight: 700;
+    }
+    .teaser-caption {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4a4a4a;
+    }
+    .highlight-box {
+      background: linear-gradient(135deg, #667eea11, #764ba211);
+      border: 1px solid #667eea44;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #3273dc;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Look Before You Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing",
+    "description": "LB-Edit addresses two coupled problems in text-driven 3DGS editing: attention-guided camera placement (ACP) and multi-view attention alignment (MAA) for consistent localized 3D scene editing.",
+    "author": [
+      {"@type": "Person", "name": "Jaeyeon Park", "affiliation": {"@type": "Organization", "name": "Seoul National University"}},
+      {"@type": "Person", "name": "Taeho Kang", "affiliation": {"@type": "Organization", "name": "Seoul National University"}},
+      {"@type": "Person", "name": "Youngki Lee", "affiliation": {"@type": "Organization", "name": "Seoul National University"}}
+    ],
+    "datePublished": "2026-07-22",
+    "keywords": ["3D Gaussian Splatting", "text-guided editing", "view selection", "attention alignment", "diffusion models"]
+  }
+  </script>
+</head>
+
+<body>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<main id="main-content">
+
+<!-- ===== HERO / TITLE ===== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            Look Before You Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://bonapark00.github.io/" target="_blank">Jaeyeon Park</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://tho-kn.github.io/" target="_blank">Taeho Kang</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://youngkilee.blogspot.com/p/about-me.html" target="_blank">Youngki Lee</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Seoul National University, South Korea</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- arXiv Paper -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2607.19777" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- PDF -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2607.19777.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Code (coming soon) -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" style="opacity:0.6; cursor:default;" onclick="return false;">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (coming soon)</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== TEASER ===== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image">
+        <img src="static/images/teaser.png" alt="LB-Edit teaser: COLMAP cameras vs. our editing-aware cameras" class="method-figure">
+      </figure>
+      <h2 class="subtitle has-text-centered teaser-caption" style="margin-top:1.2rem;">
+        <strong>LB-Edit</strong>. COLMAP cameras are optimized for reconstruction, not editing: target objects may be
+        cropped or observed from views too distant for reliable attention localization. Given a text-specified ROI,
+        our method selects a compact set of <em>editing-aware</em> views at attention-effective distances, enabling
+        more localized 3DGS edits with substantially lower latency than prior methods
+        (<strong>up to 7× faster</strong>).
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ABSTRACT ===== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-driven 3D scene editing with 3D Gaussian Splatting (3DGS) typically applies a 2D diffusion editor
+            to views rendered from fixed training cameras, limiting both the spatial coverage of edits and the user's
+            freedom to target specific objects in complex scenes. We present <strong>LB-Edit</strong>, a framework
+            that addresses two coupled problems: <em>where to place editing cameras</em> for localized edits, and
+            <em>how to make per-view edits agree with one another</em> so that the 3D scene remains consistent
+            after fine-tuning.
+          </p>
+          <p>
+            First, <strong>Attention-Guided Editing Camera Placement (ACP)</strong> probes the diffusion model's
+            self- and cross-attention at multiple candidate camera distances to find where attention is
+            well-contained in the region of interest, then places a compact, geometrically diverse editing camera
+            set at that attention-optimal distance.
+          </p>
+          <p>
+            Second, <strong>Multi-view Attention Alignment (MAA)</strong> steers the editor toward the same edit
+            across views along two axes: it aligns <em>appearance</em> by sharing self-attention features via
+            token-level correspondence, and aligns <em>spatial location</em> by lifting cross-attention maps onto
+            the 3D Gaussians as a shared 3D attention field, suppressing both appearance and spatial drift.
+          </p>
+          <p>
+            Experiments on multi-object and single-object scenes show that our method achieves the highest user
+            preference in instruction fidelity, multi-view consistency, and editing locality, using
+            <strong>as few as 5 editing views</strong> and reducing latency by up to <strong>7× </strong>over
+            existing methods.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== METHOD OVERVIEW ===== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    <canvas id="canvas-method"></canvas>
+    <div class="content has-text-justified">
+      <p>
+        Given a source 3DGS, an ROI mask, and a text editing prompt, LB-Edit proceeds in two stages:
+      </p>
+      <p>
+        <strong>Step 1 — Attention-Guided Editing Camera Placement (ACP).</strong>
+        We probe candidate camera distances using few-step diffusion (5 steps) and select the distance
+        where self-attention remains well-contained within the target region while cross-attention reliably
+        localizes the edit. From the optimal distance d*, we sample a compact yet geometrically diverse
+        set of K editing cameras via Fibonacci lattice sampling + farthest-point selection.
+      </p>
+      <p>
+        <strong>Step 2 — Multi-view Attention Alignment (MAA).</strong>
+        Reference views first perform a full U-Net forward pass to establish self- and cross-attention
+        features. Target views then inherit aligned features: (a) <em>SA alignment</em> shares self-attention
+        outputs via cosine-similarity token correspondence, suppressing appearance drift; (b)
+        <em>CA alignment</em> lifts cross-attention maps onto the 3D Gaussians as a shared 3D attention
+        field and re-renders them per target view, suppressing spatial drift. Both replacements occur
+        within a single forward pass.
+      </p>
+      <p>
+        The synchronized multi-view edits are finally used to fine-tune the 3DGS, producing a
+        consistent edited 3D scene.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== QUALITATIVE RESULTS ===== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Comparisons</h2>
+    <div class="content has-text-centered" style="margin-bottom:1rem;">
+      <p>
+        Compared against GSEditor, VcEdit, and DGE on multi-object and single-object scenes.
+        <span class="badge" style="background:#e53e3e;">Red</span> view-dependent artifacts &amp; inconsistency
+        &nbsp;
+        <span class="badge" style="background:#d69e2e; color:#fff;">Yellow</span> low instruction fidelity
+        &nbsp;
+        <span class="badge" style="background:#3182ce;">Blue</span> edit leaks outside ROI
+      </p>
+    </div>
+
+    <canvas id="canvas-qualitative"></canvas>
+
+    <div class="highlight-box">
+      <p style="margin:0;">
+        Our method produces edits that are simultaneously <strong>faithful to the instruction</strong>,
+        <strong>localized to the ROI</strong>, and <strong>consistent across viewpoints</strong>.
+        DGE partially mitigates appearance drift via extended self-attention but leaves cross-attention
+        unconstrained, while VcEdit aligns cross-attention but not self-attention.
+        MAA synchronizes both within a single forward pass.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== VIDEO COMPARISONS ===== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
+    <p class="has-text-centered" style="margin-bottom:2rem; color:#555;">
+      Multi-view rendering comparisons against baselines (GSEditor, VcEdit, DGE, Ours).
+    </p>
+
+    <!-- Row 1: Make the man's eyes blue -->
+    <div style="margin-bottom:2.5rem;">
+      <h3 class="title is-5 has-text-centered" style="margin-bottom:0.8rem;">
+        &ldquo;Make the man&rsquo;s eyes blue&rdquo;
+      </h3>
+      <video autoplay muted loop playsinline controls
+             style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+        <source src="static/images/eye_blue.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Row 2: Turn the plush toy's color into pink -->
+    <div style="margin-bottom:2.5rem;">
+      <h3 class="title is-5 has-text-centered" style="margin-bottom:0.8rem;">
+        &ldquo;Turn the plush toy&rsquo;s color into pink&rdquo;
+      </h3>
+      <video autoplay muted loop playsinline controls
+             style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+        <source src="static/images/plush_pink.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+
+  <!-- Row 3: Change the speaker to a shiny gold texture — wider container -->
+  <div style="max-width:1500px; margin:0 auto; padding:0 1.5rem;">
+    <h3 class="title is-5 has-text-centered" style="margin-bottom:0.8rem;">
+      &ldquo;Change the speaker to a shiny gold texture&rdquo;
+    </h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <video autoplay muted loop playsinline controls
+             style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+        <source src="static/images/golden_object.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline controls
+             style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+        <source src="static/images/golden_full_scene.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="has-text-centered" style="font-size:0.82rem; color:#888; margin-top:0.5rem;">
+      Left: object-focused view &nbsp;|&nbsp; Right: full scene view
+    </p>
+  </div>
+
+</section>
+
+
+
+<!-- ===== QUANTITATIVE RESULTS ===== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+
+    <h3 class="title is-5 has-text-centered" style="margin-bottom:1rem;">
+      CLIP Directional Similarity (↑)
+    </h3>
+    <div class="table-container result-table">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+        <thead>
+          <tr>
+            <th>Scene</th>
+            <th>GSEditor</th>
+            <th>VcEdit</th>
+            <th>DGE</th>
+            <th style="background:#fffbf0; font-weight:700;">Ours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="has-text-left" style="background:#f5f5f5; font-weight:600; font-size:0.8rem;">3D-OVS</td></tr>
+          <tr>
+            <td>blue_sofa</td><td>9.70</td><td>7.54</td><td>11.79</td>
+            <td style="background:#fffbf0; font-weight:700;">13.10</td>
+          </tr>
+          <tr>
+            <td>covered_desk</td><td>4.72</td><td>16.22</td><td style="font-weight:700;">19.84</td>
+            <td style="background:#fffbf0;">18.48</td>
+          </tr>
+          <tr>
+            <td>room</td><td>7.21</td><td>12.79</td><td>19.46</td>
+            <td style="background:#fffbf0; font-weight:700;">19.78</td>
+          </tr>
+          <tr><td colspan="5" class="has-text-left" style="background:#f5f5f5; font-weight:600; font-size:0.8rem;">IN2N</td></tr>
+          <tr>
+            <td>face</td><td>9.50</td><td>10.10</td><td>19.30</td>
+            <td style="background:#fffbf0; font-weight:700;">23.00</td>
+          </tr>
+          <tr>
+            <td>bear</td><td>12.00</td><td style="font-weight:700;">23.80</td><td>19.20</td>
+            <td style="background:#fffbf0;">16.20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="has-text-centered" style="font-size:0.85rem; color:#666; margin-top:0.5rem;">
+      Best per row in <strong>bold</strong>. Our method ranks first on 4/5 scenes.
+      The bear exception is analyzed in the paper (CLIPsim can reward global color bleeding, which ACP explicitly avoids).
+    </p>
+
+    <h3 class="title is-5 has-text-centered" style="margin: 2rem 0 1rem;">
+      User Study Results (21 participants, 14 tasks)
+    </h3>
+    <div class="table-container result-table">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th style="background:#fffbf0; font-weight:700;">Ours</th>
+            <th>GSEditor</th>
+            <th>VcEdit</th>
+            <th>DGE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Instruction Fidelity</td>
+            <td style="background:#fffbf0; font-weight:700;">41.7%</td>
+            <td>19.8%</td><td>18.7%</td><td>19.8%</td>
+          </tr>
+          <tr>
+            <td>Multi-view Consistency</td>
+            <td style="background:#fffbf0; font-weight:700;">37.7%</td>
+            <td>22.2%</td><td>22.6%</td><td>17.5%</td>
+          </tr>
+          <tr>
+            <td>Editing Locality</td>
+            <td style="background:#fffbf0; font-weight:700;">32.9%</td>
+            <td>30.6%</td><td>21.4%</td><td>15.1%</td>
+          </tr>
+          <tr style="border-top: 2px solid #ddd;">
+            <td><strong>Overall</strong></td>
+            <td style="background:#fffbf0; font-weight:700;">37.4%</td>
+            <td>24.2%</td><td>20.9%</td><td>17.5%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="has-text-centered" style="font-size:0.85rem; color:#666; margin-top:0.5rem;">
+      Percentage of trials on which each method was preferred. Our method is preferred on every criterion.
+    </p>
+  </div>
+</section>
+
+
+
+<!-- ===== COMPARISON TABLE ===== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Comparison with Prior Work</h2>
+    <p class="has-text-centered" style="margin-bottom:1.2rem;">
+      <strong>CP</strong>: editing-aware camera placement &nbsp;|&nbsp;
+      <strong>SA</strong>: self-attention alignment &nbsp;|&nbsp;
+      <strong>CA</strong>: cross-attention alignment
+    </p>
+    <div class="table-container result-table">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+        <thead>
+          <tr>
+            <th>Method</th><th>CP</th><th>SA</th><th>CA</th><th>Consistency Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>IN2N</td><td>✗</td><td>✗</td><td>✗</td><td>Iterative dataset update</td></tr>
+          <tr><td>GaussianEditor</td><td>✗</td><td>✗</td><td>✗</td><td>Semantic tracing + HGS</td></tr>
+          <tr><td>ViCA-NeRF</td><td>Pixel-ratio views</td><td>✗</td><td>✗</td><td>Depth-warped propagation</td></tr>
+          <tr><td>DGE</td><td>✗</td><td>✓</td><td>✗</td><td>Ext. ST self-attn. + injection</td></tr>
+          <tr><td>GaussCtrl</td><td>✗</td><td>✓</td><td>✗</td><td>Cross-view latent attn.</td></tr>
+          <tr><td>VcEdit</td><td>✗</td><td>✗</td><td>✓</td><td>3D inverse splatting of CA</td></tr>
+          <tr><td>EditSplat</td><td>✗</td><td>✓</td><td>✗</td><td>Multi-view self-attn. fusion</td></tr>
+          <tr><td>InterGSEdit</td><td>User key view</td><td>✗</td><td>✓</td><td>3D CA prior + fusion</td></tr>
+          <tr><td>Edit360</td><td>User anchor view</td><td>✗</td><td>✗</td><td>Video-diff. 360° prop.</td></tr>
+          <tr style="font-weight:700; background:#fffbf0;">
+            <td>Ours (LB-Edit)</td><td>Attn.-driven ✓</td><td>✓</td><td>✓</td>
+            <td>Joint SA + 3D CA align.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="has-text-centered" style="font-size:0.85rem; color:#666; margin-top:0.5rem;">
+      LB-Edit is the first method to jointly address all three components.
+    </p>
+  </div>
+</section>
+
+
+<!-- ===== BIBTEX ===== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="bibtex-header">
+      <h2 class="title">BibTeX</h2>
+      <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+        <i class="fas fa-copy"></i>
+        <span class="copy-text">Copy</span>
+      </button>
+    </div>
+    <pre id="bibtex-code"><code>@article{park2026lbedit,
+  title={Look Before You Edit: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing},
+  author={Park, Jaeyeon and Kang, Taeho and Lee, Youngki},
+  journal={arXiv preprint arXiv:2607.19777},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This page was built using the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">
+              Academic Project Page Template
+            </a>
+            which was adopted from the
+            <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+              Creative Commons Attribution-ShareAlike 4.0 International License
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</main>
+</body>
+</html>
