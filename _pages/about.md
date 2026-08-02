@@ -23,24 +23,45 @@ Prior to that, I graduated with **High Honors** in Computer Science from [Yonsei
 
 My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, NeRF), **text-driven 3D editing**, and **efficient graphics systems** for mobile and edge devices.
 
----
+## education
 
-**Education**
+| | |
+|---|---|
+| **Seoul National University** | Mar 2024 – Feb 2026 |
+| MS in Computer Science and Engineering | Seoul, South Korea |
+| *Thesis: E3E: Efficient 3D Gaussian Splatting Editing with Text Prompts* | |
 
-- **Seoul National University** — MS in Computer Science and Engineering (Mar 2024 – Feb 2026)
-- **Yonsei University** — BS in Computer Science (Mar 2020 – Feb 2024), Graduation with High Honors
+| | |
+|---|---|
+| **Yonsei University** | Mar 2020 – Feb 2024 |
+| BS in Computer Science | Seoul, South Korea |
+| *GPA: 4.10/4.30, Graduation with High Honors* | |
 
-**Experience**
+## experience
 
-- **Human-Centered Computer Systems Lab, SNU** — Intern (Jul 2022 – Feb 2024), Graduate Student (Mar 2024 – Mar 2026)
-  - Researched 3D computer vision with a focus on efficient 3D reconstruction, 3D generative models, and text-driven 3D editing using neural rendering techniques (NeRF, 3D/4D Gaussian Splatting) across server and mobile platforms.
+| | |
+|---|---|
+| **Human-Centered Computer Systems Lab, SNU** | Jul 2022 – Mar 2026 |
+| Intern (2022–2024), Graduate Student (2024–2026) | Seoul, South Korea |
 
-**Teaching**
+Researched 3D computer vision with a focus on efficient 3D reconstruction, 3D generative models, and text-driven 3D editing using neural rendering techniques (NeRF, 3D/4D Gaussian Splatting) across server and mobile platforms.
 
-- **Software Development and Practice**, Seoul National University (2025) — Teaching Assistant
-- **Data Scientist Program (Samsung Electronics DS)**, SNU AI Education Center (2024) — Teaching Assistant
+## teaching
 
-**Technical Skills**
+| | |
+|---|---|
+| **Software Development and Practice**, Seoul National University | 2025 |
+| Teaching Assistant | |
 
-- **Languages**: C/C++, Python, CUDA, OpenCL, Metal, Swift
-- **Frameworks**: PyTorch, Docker, EC2, Git, Android, Node.js
+| | |
+|---|---|
+| **Data Scientist Program (Samsung Electronics DS)**, SNU AI Education Center | 2024 |
+| Teaching Assistant | |
+
+## skills
+
+**Programming Languages:** C/C++, Python, CUDA, OpenCL, Metal, Swift
+
+**Frameworks & Tools:** PyTorch, Docker, EC2, Git, Android, Node.js
+
+**Languages:** Korean (Native), English (Full Professional Proficiency — TEPS 502/600, TOEFL 102/120)
