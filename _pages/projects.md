@@ -6,7 +6,7 @@ description: A growing collection of my cool projects.
 nav: true
 nav_order: 3
 # display_categories: [work, fun]
-display_categories: [work]
+display_categories: [research, work]
 horizontal: false
 ---
 

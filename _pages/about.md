@@ -15,19 +15,32 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi! I’m Jaeyeon Park.  
-I'm a first-year MS student in the [Human-Centered Computing Systems Lab]() at Seoul National University, under the guidance of Professor [Youngki Lee](https://youngkilee.blogspot.com/p/about-me.html).  
-I graduated with high honors in Computer Science from Yonsei University in 2024 and have been working as a research intern at the Human-Centered Computing Systems Lab since the summer of 2022.
+Hi! I'm Jaeyeon Park, a 3D vision researcher.
 
-My research interests include Neural 3D Synthesis (3D Gaussian Splatting, NeRF) and optimizing graphics systems for mobile devices.  
-I am currently working on developing hyper-realistic 3D streaming and rendering systems for mobile devices with [Kyungjin](https://kyungjin-lee.github.io/), Hyunwoo, and Prof. Youngki.
+I received my MS in Computer Science and Engineering from [Seoul National University](https://www.snu.ac.kr/) in February 2026, where I was a member of the [Human-Centered Computing Systems Lab](https://hcs.snu.ac.kr/) advised by Professor [Youngki Lee](https://youngkilee.blogspot.com/p/about-me.html). My thesis was titled *E3E: Efficient 3D Gaussian Splatting Editing with Text Prompts*.
 
+Prior to that, I graduated with **High Honors** in Computer Science from [Yonsei University](https://www.yonsei.ac.kr/) in 2024 (GPA: 4.10/4.30), and I have been a research intern at the HCS Lab since the summer of 2022.
 
+My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, NeRF), **text-driven 3D editing**, and **efficient graphics systems** for mobile and edge devices.
 
+---
 
+**Education**
 
-<!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+- **Seoul National University** — MS in Computer Science and Engineering (Mar 2024 – Feb 2026)
+- **Yonsei University** — BS in Computer Science (Mar 2020 – Feb 2024), Graduation with High Honors
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+**Experience**
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+- **Human-Centered Computer Systems Lab, SNU** — Intern (Jul 2022 – Feb 2024), Graduate Student (Mar 2024 – Mar 2026)
+  - Researched 3D computer vision with a focus on efficient 3D reconstruction, 3D generative models, and text-driven 3D editing using neural rendering techniques (NeRF, 3D/4D Gaussian Splatting) across server and mobile platforms.
+
+**Teaching**
+
+- **Software Development and Practice**, Seoul National University (2025) — Teaching Assistant
+- **Data Scientist Program (Samsung Electronics DS)**, SNU AI Education Center (2024) — Teaching Assistant
+
+**Technical Skills**
+
+- **Languages**: C/C++, Python, CUDA, OpenCL, Metal, Swift
+- **Frameworks**: PyTorch, Docker, EC2, Git, Android, Node.js
