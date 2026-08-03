@@ -24,7 +24,7 @@ Prior to that, I graduated with **High Honors** in Computer Science from [Yonsei
 My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, NeRF), **text-driven 3D editing**, and **efficient graphics systems** for mobile and edge devices.
 
 ## education
-{: style="margin-top: 18rem;"}
+{: style="margin-top: 14rem;"}
 
 <div class="cv-section">
   <div class="cv-entry">
