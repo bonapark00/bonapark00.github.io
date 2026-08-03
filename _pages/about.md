@@ -103,14 +103,14 @@ My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, 
 
 <style>
 .cv-section {
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 .cv-entry {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1.5rem;
-  padding: 0.75rem 0;
+  padding: 1.1rem 0;
   border-bottom: 1px solid rgba(128,128,128,0.15);
 }
 .cv-entry:last-child {
@@ -128,17 +128,17 @@ My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, 
 .cv-title {
   font-weight: 700;
   font-size: 0.95rem;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.25rem;
 }
 .cv-subtitle {
   font-size: 0.875rem;
   opacity: 0.85;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 .cv-detail {
   font-size: 0.85rem;
   opacity: 0.7;
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
 }
 .cv-date {
   font-size: 0.875rem;
@@ -148,13 +148,13 @@ My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, 
 .cv-location {
   font-size: 0.8rem;
   opacity: 0.6;
-  margin-top: 0.1rem;
+  margin-top: 0.15rem;
 }
 .cv-skills {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 0.5rem 0;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
 }
 .cv-skill-row {
   display: flex;
