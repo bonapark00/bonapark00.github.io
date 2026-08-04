@@ -2,7 +2,6 @@
 layout: page
 title: "CEM-4DGS: Clustered Error Correction with Grouped 4D Gaussian Splatting"
 description: Dynamic 3D scene reconstruction with error-correction and grouping techniques — SIGGRAPH Asia 2025
-img: assets/img/projects/cem4dgs/teaser.png
 importance: 2
 category: research
 related_publications: true

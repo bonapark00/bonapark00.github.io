@@ -2,7 +2,6 @@
 layout: page
 title: "LB-Edit: Look Before You Edit"
 description: Attention-Guided Camera Placement and Multi-View Alignment for 3D Gaussian Splatting Editing
-img: assets/img/projects/lbedit/teaser.png
 importance: 1
 category: research
 related_publications: true
