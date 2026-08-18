@@ -98,7 +98,7 @@ My research interests lie in **neural 3D synthesis** (3D/4D Gaussian Splatting, 
   <div class="cv-skills">
     <div class="cv-skill-row"><span class="cv-skill-label">Languages</span><span class="cv-skill-value">C/C++, Python, CUDA, OpenCL, Metal, Swift</span></div>
     <div class="cv-skill-row"><span class="cv-skill-label">Frameworks</span><span class="cv-skill-value">PyTorch, Docker, EC2, Git, Android, Node.js</span></div>
-    <div class="cv-skill-row"><span class="cv-skill-label">Human Languages</span><span class="cv-skill-value">Korean (Native), English (TEPS 502/600, TOEFL 102/120)</span></div>
+    <div class="cv-skill-row"><span class="cv-skill-label">Human Languages</span><span class="cv-skill-value">Korean (Native), English (OPIc AL, TEPS 502/600, TOEFL 102/120)</span></div>
   </div>
 </div>
 
