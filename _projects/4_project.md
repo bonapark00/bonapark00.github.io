@@ -12,6 +12,14 @@ related_publications: true
 
 ---
 
+## Links
+
+- [Project Page](https://bonapark00.github.io/lbedit-project-page/)
+- [arXiv](https://arxiv.org/abs/2607.19777)
+
+---
+
+
 ## Overview
 
 Text-driven 3D scene editing with 3D Gaussian Splatting (3DGS) typically applies a 2D diffusion editor to views rendered from fixed training cameras. This limits both the spatial coverage of edits and the user's ability to target specific objects in complex scenes.
@@ -38,9 +46,5 @@ We present **LB-Edit**, a framework that addresses two coupled problems:
 - Uses as few as **5 editing views**
 - Reduces editing latency by up to **7×** over existing methods (GSEditor, VcEdit, DGE)
 
----
 
-## Links
 
-- [Project Page](https://bonapark00.github.io/lbedit-project-page/)
-- [arXiv](https://arxiv.org/abs/2607.19777)

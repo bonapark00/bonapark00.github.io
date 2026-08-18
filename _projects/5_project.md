@@ -12,6 +12,12 @@ related_publications: true
 
 ---
 
+## Links
+
+- [Project Page](https://tho-kn.github.io/projects/CEM-4DGS/)
+
+---
+
 ## Overview
 
 We advance dynamic 3D scene reconstruction and novel view synthesis by building on 4D Gaussian Splatting.
@@ -22,8 +28,3 @@ We advance dynamic 3D scene reconstruction and novel view synthesis by building 
 
 Together, these techniques achieve state-of-the-art perceptual rendering quality on standard benchmarks (Technicolor Light Field, Neural 3D Video), with a **+0.39 dB PSNR** improvement.
 
----
-
-## Links
-
-- [Project Page](https://tho-kn.github.io/projects/CEM-4DGS/)
