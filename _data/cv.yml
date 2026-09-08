@@ -71,13 +71,15 @@
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: "Highest Honors (최우등생)"
       items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
+        - "2020, Semester 1"
+    - year: "High Honors (우수생)"
       items:
-        - Max Planck Medal
+        - "2020, Semester 2"
+        - "2022, Semester 2"
+        - "2023, Semester 2"
+    - year: "Graduated with Honors (우등졸업생)"
 
 - title: Academic Interests
   type: nested_list
