@@ -5,6 +5,7 @@ description: Dynamic 3D scene reconstruction with error-correction and grouping 
 importance: 2
 category: research
 related_publications: true
+redirect: https://tho-kn.github.io/projects/CEM-4DGS/
 ---
 
 **Authors:** Taeho Kang, Jaeyeon Park, Kyungjin Lee, Youngki Lee  

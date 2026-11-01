@@ -5,6 +5,7 @@ description: Attention-Guided Camera Placement and Multi-View Alignment for 3D G
 importance: 1
 category: research
 related_publications: true
+redirect: https://bonapark00.github.io/lbedit-project-page/
 ---
 
 **Authors:** Jaeyeon Park, Taeho Kang, Youngki Lee  
